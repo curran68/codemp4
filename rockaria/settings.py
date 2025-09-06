@@ -38,7 +38,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',  # Required by allauth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
     'rockaria',
+]
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'rockaria.urls'
@@ -67,6 +77,8 @@ TEMPLATES = [
         },
     },
 ]
+
+SITE_ID = 1
 
 WSGI_APPLICATION = 'rockaria.wsgi.application'
 
