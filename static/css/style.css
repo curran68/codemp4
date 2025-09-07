@@ -23,9 +23,102 @@ header nav a {
 
 /* Bands */
 
+/* Custom CSS for a dark-themed 'Featured Bands' section */
+
+/* Import Bootstrap 5's SCSS variables to override them before the main import */
+/* This is a simple CSS file, so we'll define our styles directly */
+
+/* General Styles for the body or main container */
+body {
+  background-color: #111; /* Dark background color */
+  color: #f8f9fa; /* Light text color for general content */
+  font-family: 'Roboto', sans-serif; /* Set a default font */
+}
+
+/* Section specific styles */
 .py-5 {
-    padding-top: 8rem !important;
-    padding-bottom: 3rem !important;
+  padding-top: 5rem !important;
+  padding-bottom: 3rem !important;
+}
+
+.text-light {
+  color: #f8f9fa !important;
+}
+
+/* Heading styles */
+.text-warning {
+  color: #ffc107 !important; /* Bootstrap's warning color */
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.fw-bold {
+  font-weight: 700 !important;
+}
+
+.mb-5 {
+  margin-bottom: 3rem !important;
+}
+
+/* Card styles for bands */
+.card {
+  border: 0; /* Remove default border */
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Add a subtle shadow */
+}
+
+.card.bg-dark {
+  background-color: #212529 !important; /* A slightly lighter dark for the card background */
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title.text-warning {
+  color: #ffc107 !important;
+}
+
+.card-text.small {
+  font-size: 0.875em; /* Smaller text for bio and genre */
+}
+
+.text-muted {
+  color: #6c757d !important; /* Bootstrap's muted text color */
+}
+
+/* Band logo styles */
+.logo-container {
+  padding-top: 1rem;
+}
+
+.band-logo {
+  max-width: 150px; /* Constrain logo size */
+  height: auto;
+}
+
+/* Button styles */
+.btn-warning {
+  color: #212529; /* Dark text on warning button */
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.btn-warning:hover {
+  color: #212529;
+  background-color: #ffcd39;
+  border-color: #ffc720;
+}
+
+.mt-auto {
+  margin-top: auto !important; /* Pushes the button to the bottom of the card body */
+}
+
+/* Placeholder for when no bands are found */
+.lead.text-white {
+  color: #fff !important;
 }
 
 
