@@ -4,10 +4,8 @@ from django.shortcuts import get_object_or_404, render
 from .models import Band
 
 def band_list(request):
-    """
-    A view to display a list of bands.
-    """
-    return render(request, 'bands/band_list.html')
+    bands = Band.objects.all()
+    return render(request, 'bands/bands.html', {'bands': bands})
 
 def concert_list(request):
     concerts = Concert.objects.all()
