@@ -23,6 +23,11 @@ header nav a {
 
 /* Bands */
 
+.py-5 {
+    padding-top: 8rem !important;
+    padding-bottom: 3rem !important;
+}
+
 
 
 /* Concerts */
