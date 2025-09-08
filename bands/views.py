@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Band, Concert
+from .forms import TicketBookingForm
 
 
 def band_list(request):
@@ -21,9 +22,15 @@ def band_detail(request, slug):
 
 
 def book_tickets(request, pk):
-    """Render a page for booking tickets for a specific concert."""
+    """
+    Renders the ticket booking page for a specific concert.
+    """
     concert = get_object_or_404(Concert, pk=pk)
+    form = TicketBookingForm()
+
     context = {
         'concert': concert,
+        'form': form,
     }
+
     return render(request, 'bands/book_tickets.html', context)

@@ -48,9 +48,16 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     'bands',
     'concerts',
+    'crispy_forms',
+    'crispy_bootstrap5',
     
     
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+
+CRISPY_TEMPLATE_PACK = "bootstrap5"
+
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
