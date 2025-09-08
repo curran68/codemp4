@@ -18,3 +18,12 @@ def band_detail(request, slug):
     """Show details for a single band."""
     band = get_object_or_404(Band, slug=slug)
     return render(request, 'bands/band_detail.html', {'band': band})
+
+
+def book_tickets(request, pk):
+    """Render a page for booking tickets for a specific concert."""
+    concert = get_object_or_404(Concert, pk=pk)
+    context = {
+        'concert': concert,
+    }
+    return render(request, 'bands/book_tickets.html', context)
