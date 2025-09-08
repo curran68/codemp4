@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Joti+One&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
 
-
+/* Corrected and merged body section */
 body {
-    font-family: Roboto, sans-serif;
+    font-family: 'Roboto', sans-serif; /* Uses the Roboto font from the import */
     margin: 0;
     padding: 0;
-    background: #f7f7f7;
-    color: #333;    
+    background-color: #111; /* Dark background from the 'Featured Bands' section */
+    color: #f8f9fa; /* Light text color to match the dark background */
 }
 
+/* Header and navigation styles (unchanged) */
 header nav {
     background: #222;
     color: white;
@@ -22,20 +23,8 @@ header nav a {
 }
 
 /* Bands */
+/* Custom CSS for a dark-themed 'Featured Bands' section (unchanged) */
 
-/* Custom CSS for a dark-themed 'Featured Bands' section */
-
-/* Import Bootstrap 5's SCSS variables to override them before the main import */
-/* This is a simple CSS file, so we'll define our styles directly */
-
-/* General Styles for the body or main container */
-body {
-  background-color: #111; /* Dark background color */
-  color: #f8f9fa; /* Light text color for general content */
-  font-family: 'Roboto', sans-serif; /* Set a default font */
-}
-
-/* Section specific styles */
 .py-5 {
   padding-top: 5rem !important;
   padding-bottom: 3rem !important;
@@ -47,7 +36,7 @@ body {
 
 /* Heading styles */
 .text-warning {
-  color: #ffc107 !important; /* Bootstrap's warning color */
+  color: #ffc107 !important;
 }
 
 .text-center {
@@ -64,12 +53,12 @@ body {
 
 /* Card styles for bands */
 .card {
-  border: 0; /* Remove default border */
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075); /* Add a subtle shadow */
+  border: 0;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
 }
 
 .card.bg-dark {
-  background-color: #212529 !important; /* A slightly lighter dark for the card background */
+  background-color: #212529 !important;
 }
 
 .card-body {
@@ -82,11 +71,11 @@ body {
 }
 
 .card-text.small {
-  font-size: 0.875em; /* Smaller text for bio and genre */
+  font-size: 0.875em;
 }
 
 .text-muted {
-  color: #6c757d !important; /* Bootstrap's muted text color */
+  color: #6c757d !important;
 }
 
 /* Band logo styles */
@@ -95,13 +84,13 @@ body {
 }
 
 .band-logo {
-  max-width: 150px; /* Constrain logo size */
+  max-width: 150px;
   height: auto;
 }
 
 /* Button styles */
 .btn-warning {
-  color: #212529; /* Dark text on warning button */
+  color: #212529;
   background-color: #ffc107;
   border-color: #ffc107;
 }
@@ -113,7 +102,7 @@ body {
 }
 
 .mt-auto {
-  margin-top: auto !important; /* Pushes the button to the bottom of the card body */
+  margin-top: auto !important;
 }
 
 /* Placeholder for when no bands are found */
@@ -121,9 +110,4 @@ body {
   color: #fff !important;
 }
 
-
-
 /* Concerts */
-
-
-

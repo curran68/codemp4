@@ -5,7 +5,7 @@
 <section class="py-5 text-light" style="background-color: #111;">
   <div class="container">
     <h2 class="text-warning text-center fw-bold mb-5" style="font-family: 'Roboto', sans-serif;">
-      Featured Bands
+      All Bands
     </h2>
     <div class="row g-4">
       {% for band in bands %}
@@ -39,9 +39,6 @@
     <p class="lead text-white">No bands found yet. Please add some via the Django admin!</p>
   </div>
 {% endfor %}
-
-      {% comment %} Loop through each band object passed from the view {% endcomment %}
-
 
     </div>
   </div>
