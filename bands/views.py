@@ -21,7 +21,7 @@ def band_detail(request, slug):
     return render(request, 'bands/band_detail.html', {'band': band})
 
 
-def book_tickets(request, pk):
+def book_tickets_for_concert(request, pk):
     """
     Renders the ticket booking page for a specific concert.
     """
@@ -32,5 +32,23 @@ def book_tickets(request, pk):
         'concert': concert,
         'form': form,
     }
-
     return render(request, 'bands/book_tickets.html', context)
+
+
+def book_tickets(request):
+    """
+    General book tickets page (no specific concert).
+    """
+    return render(request, 'bands/book_tickets.html')
+
+
+def login_view(request):
+    return render(request, 'bands/login.html')
+
+
+def register_view(request):
+    return render(request, 'bands/register.html')
+
+
+def profile_view(request):
+    return render(request, 'bands/profile.html')
