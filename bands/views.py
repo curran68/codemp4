@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Band, Concert
 from .forms import TicketBookingForm
+from django.contrib.auth.decorators import login_required
 
 
 def band_list(request):
@@ -42,13 +43,7 @@ def book_tickets(request):
     return render(request, 'bands/book_tickets.html')
 
 
-def login_view(request):
-    return render(request, 'bands/login.html')
-
-
-def register_view(request):
-    return render(request, 'bands/register.html')
-
-
+@login_required
 def profile_view(request):
+    """User profile page - requires login."""
     return render(request, 'bands/profile.html')
