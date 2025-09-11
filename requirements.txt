@@ -12,6 +12,7 @@ Django==5.2.1
 django-allauth==65.11.1
 django-crispy-forms==2.4
 django-storages==1.14.6
+environ==1.0
 gunicorn==23.0.0
 idna==3.10
 jmespath==1.0.1

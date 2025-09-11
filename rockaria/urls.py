@@ -14,6 +14,7 @@ urlpatterns = [
     # This includes the URLs from the 'bands' app under the 'bands/' prefix.
     path('bands/', include('bands.urls')),
     
+    
     # Standard static pages.
     path('privacy_policy/', TemplateView.as_view(template_name='privacy_policy.html'), name='privacy_policy'),
     path('terms-of-service/', TemplateView.as_view(template_name='terms_of_service.html'), name='terms_of_service'),
