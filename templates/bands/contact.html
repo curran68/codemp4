@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - Rockaria{% endblock %}
+
+{% block content %}
+<div class="container mt-5 pt-5 mb-5">
+    <div class="row">
+        <div class="col-md-10 mx-auto">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">
+                    <h2 class="mb-0">
+                        <i class="fas fa-envelope me-2"></i>Contact Us
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h4>Get In Touch</h4>
+                            <p>We'd love to hear from you! Whether you have questions about tickets, need help with your account, or want to provide feedback, we're here to help.</p>
+                            
+                            <div class="contact-info">
+                                <div class="mb-3">
+                                    <h5><i class="fas fa-map-marker-alt me-2 text-primary"></i>Address</h5>
+                                    <p class="ms-4">
+                                        123 Music Street<br>
+                                        Rock City, RC 12345<br>
+                                        United Kingdom
+                                    </p>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <h5><i class="fas fa-phone me-2 text-primary"></i>Phone</h5>
+                                    <p class="ms-4">+44 (0) 123 456 7890</p>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <h5><i class="fas fa-envelope me-2 text-primary"></i>Email</h5>
+                                    <p class="ms-4">
+                                        <strong>General:</strong> info@rockaria.com<br>
+                                        <strong>Support:</strong> support@rockaria.com<br>
+                                        <strong>Bookings:</strong> tickets@rockaria.com
+                                    </p>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <h5><i class="fas fa-clock me-2 text-primary"></i>Office Hours</h5>
+                                    <p class="ms-4">
+                                        Monday - Friday: 9:00 AM - 6:00 PM<br>
+                                        Saturday: 10:00 AM - 4:00 PM<br>
+                                        Sunday: Closed
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6">
+                            <h4>Send us a Message</h4>
+                            <form>
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="subject" class="form-label">Subject</label>
+                                    <select class="form-control" id="subject" required>
+                                        <option value="">Select a topic...</option>
+                                        <option value="booking">Ticket Booking</option>
+                                        <option value="account">Account Issues</option>
+                                        <option value="refund">Refunds/Cancellations</option>
+                                        <option value="technical">Technical Support</option>
+                                        <option value="feedback">Feedback</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="message" class="form-label">Message</label>
+                                    <textarea class="form-control" id="message" rows="5" required></textarea>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-dark w-100">
+                                    <i class="fas fa-paper-plane me-1"></i>Send Message
+                                </button>
+                            </form>
+                            
+                            <div class="mt-4 p-3 bg-light rounded">
+                                <p class="mb-0 small">
+                                    <i class="fas fa-info-circle me-1"></i>
+                                    <strong>Note:</strong> This is a demo form. In a real application, this would send your message to our support team.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr class="my-4">
+                    
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h4>Follow Us</h4>
+                            <div class="social-links">
+                                <a href="https://www.facebook.com/?locale=en_GB" class="btn btn-outline-primary me-2" target="_blank">
+                                    <i class="fab fa-facebook-f me-1"></i>Facebook
+                                </a>
+                                <a href="https://x.com/?lang=en" class="btn btn-outline-info me-2" target="_blank">
+                                    <i class="fab fa-twitter me-1"></i>Twitter
+                                </a>
+                                <a href="https://www.instagram.com/" class="btn btn-outline-danger" target="_blank">
+                                    <i class="fab fa-instagram me-1"></i>Instagram
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 text-center">
+                        <a href="{% url 'band_list' %}" class="btn btn-dark">
+                            <i class="fas fa-arrow-left me-1"></i>Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,7 +1,10 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import login
+
 from .models import Band, Concert
 from .forms import TicketBookingForm
-from django.contrib.auth.decorators import login_required
 
 
 def band_list(request):
@@ -23,9 +26,7 @@ def band_detail(request, slug):
 
 
 def book_tickets_for_concert(request, pk):
-    """
-    Renders the ticket booking page for a specific concert.
-    """
+    """Renders the ticket booking page for a specific concert."""
     concert = get_object_or_404(Concert, pk=pk)
     form = TicketBookingForm()
 
@@ -37,13 +38,43 @@ def book_tickets_for_concert(request, pk):
 
 
 def book_tickets(request):
-    """
-    General book tickets page (no specific concert).
-    """
+    """General book tickets page (no specific concert)."""
     return render(request, 'bands/book_tickets.html')
 
 
 @login_required
 def profile_view(request):
     """User profile page - requires login."""
-    return render(request, 'bands/profile.html')
+    context = {
+        'user': request.user,
+    }
+    return render(request, 'bands/profile.html', context)
+
+
+def register_view(request):
+    """User registration page with Django's built-in form."""
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # auto-login after registration
+            return redirect('band_list')  # go to homepage
+    else:
+        form = UserCreationForm()
+
+    return render(request, 'registration/register.html', {'form': form})
+
+
+def privacy_policy(request):
+    """Privacy Policy page."""
+    return render(request, 'bands/privacy_policy.html')
+
+
+def terms_of_service(request):
+    """Terms of Service page."""
+    return render(request, 'bands/terms_of_service.html')
+
+
+def contact(request):
+    """Contact Us page."""
+    return render(request, 'bands/contact.html')
