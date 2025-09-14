@@ -16,9 +16,9 @@ urlpatterns = [
     
     
     # Standard static pages.
-    path('privacy_policy/', TemplateView.as_view(template_name='privacy_policy.html'), name='privacy_policy'),
-    path('terms-of-service/', TemplateView.as_view(template_name='terms_of_service.html'), name='terms_of_service'),
-    path('contact/', TemplateView.as_view(template_name='contact.html'), name='contact'),
+    path('privacy_policy/', TemplateView.as_view(template_name='bands/privacy_policy.html'), name='privacy_policy'),
+    path('terms-of-service/', TemplateView.as_view(template_name='bands/terms_of_service.html'), name='terms_of_service'),
+    path('contact/', TemplateView.as_view(template_name='bands/contact.html'), name='contact'),
 ]
 
 # This is for serving static and media files during development.
