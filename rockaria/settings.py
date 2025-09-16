@@ -118,10 +118,16 @@ WSGI_APPLICATION = 'rockaria.wsgi.application'
 #   }
 # }
 
+from decouple import config
+import dj_database_url
+
+SECRET_KEY = config("SECRET_KEY")
+DEBUG = config("DEBUG", default=False, cast=bool)
+
 DATABASES = {
-    'default': dj_database_url.parse('postgresql://neondb_owner:npg_qzbimaP7Ud9o@ep-bold-poetry-a294tqw0.eu-central-1.aws.neon.tech/half_reset_tabby_259527')
+    "default": dj_database_url.parse(config("DATABASE_URL"))
 }
-SECRET_KEY = os.environ.get('SECRET_KEY')
+
 
 
 # Password validation
