@@ -1,20 +1,27 @@
 # rockaria/settings.py
+
 from pathlib import Path
 import os
 import environ
-from decouple import config
-import dj_database_url
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Environment
-env = environ.Env()
+# Environment setup
+env = environ.Env(
+    DEBUG=(bool, False),
+    USE_S3=(bool, False),
+)
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 # Security / Debug
-SECRET_KEY = config("SECRET_KEY")
-DEBUG = config("DEBUG", default=False, cast=bool)
-ALLOWED_HOSTS = ['8000-tp197-rockaria-c6q46y6p4v8.ws-eu106.gitpod.io', '127.0.0.1', 'localhost']
+SECRET_KEY = env("SECRET_KEY")
+DEBUG = env("DEBUG")
+ALLOWED_HOSTS = [
+    env("HOST_DOMAIN", default="8000-tp197-rockaria-c6q46y6p4v8.ws-eu106.gitpod.io"),
+    '127.0.0.1',
+    'localhost'
+]
+
 # Apps
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -31,7 +38,6 @@ INSTALLED_APPS = [
     'storages',
     'bands',
     'cart',
-    
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -52,7 +58,10 @@ ROOT_URLCONF = 'rockaria.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates'), os.path.join(BASE_DIR, 'templates', 'allauth')],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+            os.path.join(BASE_DIR, 'templates', 'allauth')
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -85,7 +94,7 @@ WSGI_APPLICATION = 'rockaria.wsgi.application'
 
 # Database
 DATABASES = {
-    "default": dj_database_url.parse(config("DATABASE_URL"))
+    "default": env.db("DATABASE_URL"),
 }
 
 # Password validation
@@ -103,35 +112,32 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# --- Static & Media Files ---
+# Static & Media Files
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# AWS S3
-USE_S3 = env.bool('USE_S3', default=False)
+# AWS S3 Storage Settings (Optional)
+USE_S3 = env.bool("USE_S3", default=False)
+
 if USE_S3:
     AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
     AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
     AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
-    
-    AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
-    STATICFILES_LOCATION = 'static'
-    MEDIAFILES_LOCATION = 'media'
-
-    STATICFILES_STORAGE = 'rockaria.storages.StaticStorage'
-    DEFAULT_FILE_STORAGE = 'rockaria.storages.MediaStorage'
-
-    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
-    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
-
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com"
     AWS_S3_FILE_OVERWRITE = False
     AWS_DEFAULT_ACL = None
-    AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
+    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
+    STATICFILES_LOCATION = "static"
+    MEDIAFILES_LOCATION = "media"
+    STATICFILES_STORAGE = "rockaria.storages.StaticStorage"
+    DEFAULT_FILE_STORAGE = "rockaria.storages.MediaStorage"
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/"
 
 # Default primary key
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -142,15 +148,15 @@ STRIPE_PUBLIC_KEY = env('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = env('STRIPE_SECRET_KEY')
 STRIPE_WH_SECRET = env('STRIPE_WH_SECRET')
 
-# Email
+# Email backend
 if DEBUG:
-    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    DEFAULT_FROM_EMAIL = 'support@rockaria.com'
+    EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+    DEFAULT_FROM_EMAIL = "support@rockaria.com"
 else:
-    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
     EMAIL_USE_TLS = True
     EMAIL_PORT = 587
-    EMAIL_HOST = 'smtp.gmail.com'
-    EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-    EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASS')
-    DEFAULT_FROM_EMAIL = env('EMAIL_HOST_USER')
+    EMAIL_HOST = "smtp.gmail.com"
+    EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+    EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASS")
+    DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

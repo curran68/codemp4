@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Joti+One&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* Corrected and merged body section */
+body {
+    font-family: 'Roboto', sans-serif; /* Uses the Roboto font from the import */
+    margin: 0;
+    padding: 0;
+    background-color: #111; /* Dark background from the 'Featured Bands' section */
+    color: #f8f9fa; /* Light text color to match the dark background */
+}
+
+/* Header and navigation styles (unchanged) */
+header nav {
+    background: #222;
+    color: white;
+    padding: 1rem;
+}
+
+header nav a {
+    color: white;
+    margin-left: 1rem;
+    text-decoration: none;
+}
+
+/* Bands */
+/* Custom CSS for a dark-themed 'Featured Bands' section (unchanged) */
+
+.py-5 {
+  padding-top: 5rem !important;
+  padding-bottom: 3rem !important;
+}
+
+.text-light {
+  color: #f8f9fa !important;
+}
+
+/* Heading styles */
+.text-warning {
+  color: #ffc107 !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+.fw-bold {
+  font-weight: 700 !important;
+}
+
+.mb-5 {
+  margin-bottom: 3rem !important;
+}
+
+/* Card styles for bands */
+.card {
+  border: 0;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card.bg-dark {
+  background-color: #212529 !important;
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title.text-warning {
+  color: #ffc107 !important;
+}
+
+.card-text.small {
+  font-size: 0.875em;
+}
+
+.text-muted {
+  color: #6c757d !important;
+}
+
+/* Band logo styles */
+.logo-container {
+  padding-top: 1rem;
+}
+
+.band-logo {
+  max-width: 150px;
+  height: auto;
+}
+
+/* Button styles */
+.btn-warning {
+  color: #212529;
+  background-color: #ffc107;
+  border-color: #ffc107;
+}
+
+.btn-warning:hover {
+  color: #212529;
+  background-color: #ffcd39;
+  border-color: #ffc720;
+}
+
+.mt-auto {
+  margin-top: auto !important;
+}
+
+/* Placeholder for when no bands are found */
+.lead.text-white {
+  color: #fff !important;
+}
+
+/* Concerts */
