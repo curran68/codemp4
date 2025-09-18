@@ -14,8 +14,7 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # Security / Debug
 SECRET_KEY = config("SECRET_KEY")
 DEBUG = config("DEBUG", default=False, cast=bool)
-ALLOWED_HOSTS = ['8000-tp197-rockaria-c6q46y6p4v8.ws-eu106.gitpod.io']
-
+ALLOWED_HOSTS = ['8000-tp197-rockaria-c6q46y6p4v8.ws-eu106.gitpod.io', '127.0.0.1', 'localhost']
 # Apps
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -31,6 +30,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'storages',
     'bands',
+    'cart',
+    
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -102,7 +103,7 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# Static & Media defaults (work locally and on Heroku’s filesystem)
+# --- Static & Media Files ---
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
@@ -110,32 +111,24 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-# Toggle S3 via USE_S3
+# AWS S3
 USE_S3 = env.bool('USE_S3', default=False)
-
 if USE_S3:
-    # Required on Heroku: USE_S3=true
-    AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
-    AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
     AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
-
-    # Optional custom domain; many regions require region in the hostname
+    AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
+    AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
+    
     AWS_S3_CUSTOM_DOMAIN = f'{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com'
-
-    # Storage backends using custom storages module
-    STATICFILES_STORAGE = 'custom_storages.StaticStorage'
-    DEFAULT_FILE_STORAGE = 'custom_storages.MediaStorage'
-
-    # S3 locations
     STATICFILES_LOCATION = 'static'
     MEDIAFILES_LOCATION = 'media'
 
-    # Public URLs
+    STATICFILES_STORAGE = 'rockaria.custom_storages.StaticStorage'
+    DEFAULT_FILE_STORAGE = 'rockaria.custom_storages.MediaStorage'
+
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/'
 
-    # Recommended settings
     AWS_S3_FILE_OVERWRITE = False
     AWS_DEFAULT_ACL = None
     AWS_S3_OBJECT_PARAMETERS = {'CacheControl': 'max-age=86400'}
