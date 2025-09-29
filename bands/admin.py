@@ -20,7 +20,7 @@ class BandAdmin(admin.ModelAdmin):
     
     fieldsets = (
         (None, {
-            'fields': ('name', 'description', 'genre')
+            'fields': ('name', 'bio', 'genre') # CORRECTED: Changed 'description' to 'bio'
         }),
         ('Details', {
             'fields': ('formed_date', 'website', 'image')
