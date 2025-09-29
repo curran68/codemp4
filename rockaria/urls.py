@@ -7,6 +7,8 @@ from django.views.generic import TemplateView
 urlpatterns = [
     # Admin URL is kept here.
     path('admin/', admin.site.urls),
+
+    path('accounts/', include('allauth.urls')),
     
     # This correctly sets the root URL to the home page.
     path('', TemplateView.as_view(template_name='home.html'), name='home'),

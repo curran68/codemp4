@@ -30,7 +30,7 @@
         <p class="card-text small text-muted">{{ band.genre }}</p>
         {% endif %}
         <p class="card-text small">{{ band.bio|truncatechars:100 }}</p>
-        <a href="{% url 'band_detail' band.slug %}" class="btn btn-warning mt-auto">View Band</a>
+        <a href="{% url 'bands:band_detail' band.slug %}" class="btn btn-warning mt-auto">View Band</a>
       </div>
     </div>
   </div>

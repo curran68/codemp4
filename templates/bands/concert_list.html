@@ -19,7 +19,7 @@
                         <h5 class="card-title text-warning">{{ concert.name }}</h5>
                         <p class="card-text small text-muted">{{ concert.date|date:"F j, Y" }}</p>
                         <p class="card-text small">{{ concert.location }}</p>
-                        <a href="{% url 'book_tickets' concert.pk %}" class="btn btn-warning mt-auto">Book Tickets</a>
+                        <a href="{% url 'bands:book_tickets' concert.pk %}" class="btn btn-warning mt-auto">Book Tickets</a>
                     </div>
                 </div>
             </div>
