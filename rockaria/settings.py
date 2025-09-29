@@ -112,32 +112,55 @@ USE_I18N = True
 USE_L10N = True
 USE_TZ = True
 
-# Static & Media Files
-STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
-MEDIA_URL = '/media/'
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+# ---- Common settings (always define) ----
+STATICFILES_DIRS = [BASE_DIR / "static"]           # source static assets
 
-# AWS S3 Storage Settings (Optional)
+# ---- S3 toggle ----
 USE_S3 = env.bool("USE_S3", default=False)
 
 if USE_S3:
+    # S3 configuration
     AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
     AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
     AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
     AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
     AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com"
-    AWS_S3_FILE_OVERWRITE = False
+    
     AWS_DEFAULT_ACL = None
-    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
-    STATICFILES_LOCATION = "static"
-    MEDIAFILES_LOCATION = "media"
-    STATICFILES_STORAGE = "rockaria.storages.StaticStorage"
-    DEFAULT_FILE_STORAGE = "rockaria.storages.MediaStorage"
-    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{STATICFILES_LOCATION}/"
-    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/{MEDIAFILES_LOCATION}/"
+    AWS_S3_FILE_OVERWRITE = False
+    AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=31536000, public"}
+    AWS_LOCATION = 'static'
+    
+    # Modern STORAGES format
+    STORAGES = {
+        "default": {
+            "BACKEND": "rockaria.storages.MediaStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "rockaria.storages.StaticStorage",
+        },
+    }
+    
+    STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
+    MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
+    
+else:
+    # Local development
+    STORAGES = {
+        "default": {
+            "BACKEND": "django.core.files.storage.FileSystemStorage",
+        },
+        "staticfiles": {
+            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        },
+    }
+    
+    STATIC_URL = "/static/"
+    STATIC_ROOT = BASE_DIR / "staticfiles"
+    MEDIA_URL = "/media/"
+    MEDIA_ROOT = BASE_DIR / "media"
+
 
 # Default primary key
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
