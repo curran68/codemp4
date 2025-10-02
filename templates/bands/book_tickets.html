@@ -24,7 +24,7 @@
         {% if concert %}
         <form id="bookingForm" method="POST" action="{% url 'book_tickets' concert.id %}">
           {% else %}
-          <form id="bookingForm" method="POST" action="{% url 'book_tickets' %}">
+          <form id="bookingForm" method="POST" action="{% url 'bands:book_tickets' concert.pk %}">
             {% endif %}
             {% csrf_token %}
             {{ form|crispy }}
