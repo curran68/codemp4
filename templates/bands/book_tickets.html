@@ -22,7 +22,7 @@
         {% endif %}
 
         {% if concert %}
-        <form id="bookingForm" method="POST" action="{% url 'book_tickets' concert.id %}">
+        <form id="bookingForm" method="POST" action="{% url 'bands:book_tickets' concert.id %}">
           {% else %}
           <form id="bookingForm" method="POST" action="{% url 'bands:book_tickets' concert.pk %}">
             {% endif %}

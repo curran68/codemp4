@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'crispy_forms',
+    'crispy_bootstrap4',
     'storages',
     'bands',
     'cart',
@@ -183,3 +184,8 @@ else:
     EMAIL_HOST_USER = env("EMAIL_HOST_USER")
     EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASS")
     DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+    # settings.py
+
+    CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap4"
+    CRISPY_TEMPLATE_PACK = "bootstrap4"
