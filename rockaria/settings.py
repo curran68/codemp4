@@ -57,12 +57,14 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'rockaria.urls'
 
+# rockaria/settings.py
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            os.path.join(BASE_DIR, 'templates'),
-            os.path.join(BASE_DIR, 'templates', 'allauth')
+            # Keep only the top-level templates directory
+            os.path.join(BASE_DIR, 'templates'), 
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -76,6 +78,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
