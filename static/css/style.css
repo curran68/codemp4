@@ -12,12 +12,12 @@ body {
 /* Header and navigation styles (unchanged) */
 header nav {
     background: #222;
-    color: white;
+    color: #ffc107;
     padding: 1rem;
 }
 
 header nav a {
-    color: white;
+    color: #ffc107;
     margin-left: 1rem;
     text-decoration: none;
 }
