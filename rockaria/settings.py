@@ -64,7 +64,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             # Keep only the top-level templates directory
-            os.path.join(BASE_DIR, 'templates'), 
+            os.path.join(BASE_DIR, 'rockaria', 'templates'), 
         ],
         'APP_DIRS': True,
         'OPTIONS': {
