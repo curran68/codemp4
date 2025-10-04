@@ -113,6 +113,12 @@ As this is my first Django project throughout I faced challenges and
 also some demanding issues which needed thought and processes to
 remedy problems along the way.
 
+Within the project i have created on AWS an S3 bucket with the relevant 
+policies and features to handle static files.
+This took a great length of time to achieve this due to the newest methods
+and relevant code structure.
+
+
 The site is deployed to Heroku.
 
 Within the layout from the homepage, starting at the top is the 
