@@ -65,7 +65,7 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
             # Keep only the top-level templates directory
-            os.path.join(BASE_DIR, 'rockaria', 'templates'), 
+            os.path.join(BASE_DIR, 'rockaria', 'templates'),
         ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -131,13 +131,12 @@ if USE_S3:
     AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
     AWS_STORAGE_BUCKET_NAME = env("AWS_STORAGE_BUCKET_NAME")
     AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
-    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com"
-    
+    AWS_S3_CUSTOM_DOMAIN = f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}
+    .amazonaws.com"
     AWS_DEFAULT_ACL = None
     AWS_S3_FILE_OVERWRITE = False
     AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=31536000, public"}
     AWS_LOCATION = 'static'
-    
     # Modern STORAGES format
     STORAGES = {
         "default": {
@@ -147,10 +146,8 @@ if USE_S3:
             "BACKEND": "rockaria.storages.StaticStorage",
         },
     }
-    
     STATIC_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/static/'
     MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/media/'
-    
 else:
     # Local development
     STORAGES = {
@@ -158,10 +155,10 @@ else:
             "BACKEND": "django.core.files.storage.FileSystemStorage",
         },
         "staticfiles": {
-            "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+            "BACKEND": "whitenoise.storage.
+            CompressedManifestStaticFilesStorage",
         },
     }
-    
     STATIC_URL = "/static/"
     STATIC_ROOT = BASE_DIR / "staticfiles"
     MEDIA_URL = "/media/"
