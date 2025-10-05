@@ -6,6 +6,8 @@ from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from .forms import TicketBookingForm, ContactForm
 from .models import Band, Concert
 from .forms import TicketBookingForm
 
@@ -100,3 +102,17 @@ def register_view(request):
     else:
         form = UserCreationForm()
     return render(request, 'registration/register.html', {'form': form})
+
+
+def contact_view(request):
+    """Handle contact form submissions"""
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Thank you for your message! We\'ll get back to you soon.')
+            return redirect('contact')
+    else:
+        form = ContactForm()
+    
+    return render(request, 'bands/contact.html', {'form': form})

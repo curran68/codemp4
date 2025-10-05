@@ -168,3 +168,19 @@ class Review(models.Model):
     class Meta:
         ordering = ['-created_at']
         unique_together = ['concert', 'reviewer']  # One review per user per concert
+
+class ContactMessage(models.Model):
+    """Model for contact form submissions"""
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    message = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_read = models.BooleanField(default=False)  # So you can track which ones you've responded to
+    
+    def __str__(self):
+        return f"Message from {self.name} - {self.created_at.strftime('%Y-%m-%d')}"
+    
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = 'Contact Message'
+        verbose_name_plural = 'Contact Messages'
