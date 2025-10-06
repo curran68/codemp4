@@ -10,10 +10,9 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
     path('bands/', include('bands.urls')),
-    
+
     # Updated contact URL to use the view
     path('contact/', contact_view, name='contact'),
-    
     # Other static pages
     path('privacy_policy/', TemplateView.as_view(template_name='bands/privacy_policy.html'), name='privacy_policy'),
     path('terms-of-service/', TemplateView.as_view(template_name='bands/terms_of_service.html'), name='terms_of_service'),
