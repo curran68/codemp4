@@ -296,16 +296,6 @@ Created automated tests for critical functionality:
 
 Run tests with: `python manage.py test`
 
-**Test Results:** All tests passing (X/X)
-
-## Performance Testing
-
-- Lighthouse scores:
-  - Performance: 90+
-  - Accessibility: 95+
-  - Best Practices: 90+
-  - SEO: 95+
-
 ## Security Testing
 
 - CSRF protection enabled on all forms
@@ -315,6 +305,15 @@ Run tests with: `python manage.py test`
 - Secure password storage using Django's password hashing
 
 
+**Test Results:** All tests passing (X/X)
+
+## Performance Testing
+
+- Lighthouse scores:
+  - Performance: 90+
+  - Accessibility: 95+
+  - Best Practices: 90+
+  - SEO: 95+
 
 
 ## Lighthouse Tests
