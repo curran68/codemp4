@@ -18,7 +18,7 @@ SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
 # settings.py
 
-ALLOWED_HOSTS = ['rockaria-d08e317a8365.herokuapp.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['*']
 
 # Apps
 INSTALLED_APPS = [
