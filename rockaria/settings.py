@@ -16,11 +16,9 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 # Security / Debug
 SECRET_KEY = env("SECRET_KEY")
 DEBUG = env("DEBUG")
-ALLOWED_HOSTS = [
-    env("HOST_DOMAIN", default="8000-tp197-rockaria-c6q46y6p4v8.ws-eu106.gitpod.io"),
-    '127.0.0.1',
-    'localhost'
-]
+# settings.py
+
+ALLOWED_HOSTS = ['rockaria-d08e317a8365.herokuapp.com', '127.0.0.1', 'localhost']
 
 # Apps
 INSTALLED_APPS = [
