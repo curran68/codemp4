@@ -49,27 +49,6 @@ I have used a simple colour scheme, which makes it not only stand out but also s
 ![Project Screenshot](media/grabs/colours.jpg)
 
 
-## 🛠️ Getting Started
-
-## User Stories 🎯
-
-- **As a concertgoer**, I want to easily search for upcoming gigs by genre and location, so I can find events that match my taste and schedule.
-- **As a music lover**, I want to enjoy the atmosphere, music and the environment whether it be indoor or outdoor events.
-- **As a first-time visitor**, I want a smooth, visually engaging homepage that guides me effortlessly to popular events and easy ticket booking.
-- **As a returning user**, I want a great variety and quick access to my past bookings, so I can keep discovering music without starting from scratch.
-
-
-| Type                  | Feedback                             | 
-|-----------------------|--------------------------------------|
-| Concertgoer           | Suited my needs.                     | 
-| Music Lover           | This type of venue is great.         | 
-| First Time Visitor    | Ideal design great to navigate.      | 
-| Returning User        | Platform ideal for another concert.  | 
-
-
-
-
-
 
 ## Homepage on Different Devices
 
