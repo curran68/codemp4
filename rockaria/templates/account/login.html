@@ -1,50 +1,69 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.1">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Times; -webkit-text-stroke: #000000; min-height: 14.0px}
-    p.p3 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #c27e65; -webkit-text-stroke: #c27e65}
-    p.p4 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Menlo; color: #c1c1c1; -webkit-text-stroke: #c1c1c1; min-height: 14.0px}
-    span.s1 {font-kerning: none}
-    span.s2 {font-kerning: none; color: #42b3ff; background-color: #181818; -webkit-text-stroke: 0px #42b3ff}
-    span.s3 {font-kerning: none; color: #c1c1c1; background-color: #181818; -webkit-text-stroke: 0px #c1c1c1}
-    span.s4 {font-kerning: none; color: #cacaca; background-color: #181818; -webkit-text-stroke: 0px #cacaca}
-    span.s5 {font-kerning: none; background-color: #181818}
-  </style>
-</head>
-<body>
-<p class="p1"><span class="s1">{</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>"Version": "2012-10-17",</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>"Statement": [</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>{</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>"Sid": "AllowS3AccessForDjango",</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>"Effect": "Allow",</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>"Action": [</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>"s3:PutObject",</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>"s3:GetObject",</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>"s3:ListBucket",</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>"s3:HeadObject",</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>"s3:DeleteObject"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>],</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>"Resource": [</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>"arn:aws:s3:::rockaria",</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">        </span>"arn:aws:s3:::rockaria/*"</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">      </span>]</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">    </span>}</span></p>
-<p class="p1"><span class="s1"><span class="Apple-converted-space">  </span>]</span></p>
-<p class="p1"><span class="s1">}</span></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p2"><span class="s1"></span><br></p>
-<p class="p3"><span class="s2">ALLOWED_HOSTS</span><span class="s3"> </span><span class="s4">=</span><span class="s3"> [</span><span class="s5">'rockaria-d08e317a8365.herokuapp.com'</span><span class="s3">, </span><span class="s5">'127.0.0.1'</span><span class="s3">, </span><span class="s5">'localhost'</span><span class="s3">]</span></p>
-<p class="p4"><span class="s1"></span><br></p>
-</body>
-</html>
+cat > templates/account/login.html << 'EOF'
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Login - Rockaria{% endblock %}
+
+{% block content %}
+<div class="container" style="margin-top: 100px; margin-bottom: 100px;">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-warning text-dark">
+          <h3 class="mb-0">Login to Rockaria</h3>
+        </div>
+        <div class="card-body">
+          <form method="post" action="{% url 'account_login' %}">
+            {% csrf_token %}
+            
+            {% if form.non_field_errors %}
+              <div class="alert alert-danger">
+                {{ form.non_field_errors }}
+              </div>
+            {% endif %}
+
+            <div class="mb-3">
+              <label for="{{ form.login.id_for_label }}" class="form-label">Username or Email</label>
+              <input type="text" name="login" class="form-control {% if form.login.errors %}is-invalid{% endif %}" 
+                     id="{{ form.login.id_for_label }}" placeholder="Enter username or email" required>
+              {% if form.login.errors %}
+                <div class="invalid-feedback">{{ form.login.errors }}</div>
+              {% endif %}
+            </div>
+
+            <div class="mb-3">
+              <label for="{{ form.password.id_for_label }}" class="form-label">Password</label>
+              <input type="password" name="password" class="form-control {% if form.password.errors %}is-invalid{% endif %}" 
+                     id="{{ form.password.id_for_label }}" placeholder="Enter password" required>
+              {% if form.password.errors %}
+                <div class="invalid-feedback">{{ form.password.errors }}</div>
+              {% endif %}
+            </div>
+
+            <div class="mb-3 form-check">
+              <input type="checkbox" name="remember" class="form-check-input" id="remember">
+              <label class="form-check-label" for="remember">Remember me</label>
+            </div>
+
+            <button type="submit" class="btn btn-warning w-100">Login</button>
+
+            {% if redirect_field_value %}
+              <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+            {% endif %}
+          </form>
+
+          <hr>
+          
+          <p class="text-center mb-0">
+            Don't have an account? <a href="{% url 'account_signup' %}" class="text-warning">Sign up here</a>
+          </p>
+          <p class="text-center mb-0">
+            <a href="{% url 'account_reset_password' %}" class="text-muted">Forgot password?</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+EOF
