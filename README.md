@@ -325,6 +325,94 @@ Run tests with: `python manage.py test`
 
 ![Project Screenshot](media/grabs/heroku.jpg)
 
+🚀 Deployment Process
+
+The deployment process for the Rockaria Django project was carried out using Visual Studio Code (VS Code) for development, GitHub for version control, and Heroku as the cloud hosting platform. The project integrates AWS S3 for static and media file storage.
+
+1. Development Environment
+
+Development was completed locally within VS Code, using a Python virtual environment to manage dependencies and isolate the project environment.
+Required packages were installed using:
+
+pip install -r requirements.txt
+
+
+Sensitive configuration details such as the SECRET_KEY, database credentials, and AWS access keys were stored securely in a .env file, which was excluded from version control for security purposes.
+
+2. Version Control with GitHub
+
+GitHub was used to manage the source code and maintain version control.
+The repository was initialized and connected to GitHub using:
+
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin https://github.com/username/rockaria.git
+git push -u origin main
+
+
+This setup ensured that all changes were tracked and safely backed up online.
+
+3. Deployment to Heroku
+
+The live deployment was conducted using Heroku, which provides an easy-to-use platform for hosting Django applications.
+
+The steps included:
+
+Creating a new Heroku app via the CLI:
+
+heroku create rockaria-app
+
+
+Adding all environment variables (e.g., DATABASE_URL, AWS keys, STRIPE keys) through Heroku Config Vars.
+
+Running database migrations and collecting static files:
+
+heroku run python manage.py migrate
+heroku run python manage.py collectstatic --noinput
+
+
+Deploying the project to Heroku:
+
+git push heroku main
+
+
+Once deployed, the app is served through Gunicorn, with static and media files managed via AWS S3.
+
+4. Live Application
+
+The Rockaria web application is hosted on Heroku and can be accessed online.
+All subsequent updates made in the GitHub repository can be redeployed to Heroku using the same Git-based workflow.
+
+🧪 Testing
+
+Testing was conducted to ensure the application functions correctly in both development and production environments.
+
+Local testing was performed using Django’s built-in server (python manage.py runserver) and included verifying page loads, forms, and database interactions.
+
+Key functionality such as user registration, login, and ticket booking was manually tested.
+
+Heroku logs (heroku logs --tail) were monitored during deployment to identify any runtime errors or misconfigurations.
+
+Automated testing can be integrated in the future using Django’s Test Framework or pytest to provide continuous verification for critical components.
+
+🌱 Future Development
+
+Future enhancements for the Rockaria project may include:
+
+Automated Testing – Implement unit tests and integration tests for all core features.
+
+Enhanced User Interface – Improve the frontend design using advanced Bootstrap components or custom CSS.
+
+Additional Payment Options – Integrate multiple payment gateways alongside Stripe.
+
+Search and Filtering – Allow users to search for bands and events more efficiently.
+
+Continuous Deployment – Automate deployment from GitHub to Heroku via GitHub Actions for seamless updates.
+
+These improvements aim to enhance usability, maintainability, and scalability of the Rockaria application.
+
 # Wireframes
 
 ![Project Screenshot](media/grabs/rockaria1.jpg)
