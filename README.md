@@ -32,6 +32,7 @@ Towneley Park Burnley, Lancashire, is the planned venue for the music event, whe
 - Java
 - HTML
 - Custom CSS
+- SQLite
 - AWS Creation of S3 Bucket
 - Deployed To Heroku
 
@@ -258,7 +259,20 @@ The site was tested on multiple device sizes using Chrome DevTools:
 - Footer adapts to smaller screens
 
 
-### Stripe Payment System Tested
+### Database Info
+
+Within my Django project i have SQLite which is the standard variation
+for housing Concert and Band info, included are screenshots and also
+a Database Schema.
+
+![SQLite Sample](media/db/sqlite.png)
+![SQLite Sample](media/db/aws1.png)
+![SQLite Sample](media/db/aws2.png)
+![SQLite Sample](media/db/schema.png)
+
+
+
+## Stripe Payment System Tested
 
 ### Deployed To Heroku And Tested
 
