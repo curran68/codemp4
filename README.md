@@ -159,6 +159,35 @@ JavaScript was validated using [JSHint](https://jshint.com/).
 
 ## Manual Testing
 
+### User Stories
+
+
+| ID | User Type | User Story | Acceptance Criteria |
+|----|----------|------------|---------------------|
+| US01 | Visitor | As a visitor, I want to view the homepage | Homepage loads correctly and displays site purpose |
+| US02 | Visitor | As a visitor, I want to register an account | Registration form validates and creates an account |
+| US03 | Registered User | As a user, I want to log in and log out | User can securely log in and log out |
+| US04 | Registered User | As a user, I want to create content | Content is saved and displayed correctly |
+| US05 | Registered User | As a user, I want to edit my content | Only my content can be edited |
+| US06 | Registered User | As a user, I want to delete my content | Only my content can be deleted |
+| US07 | Registered User | As a user, I want to view my content list | My content is displayed correctly |
+| US08 | Registered User | As a user, I want feedback messages | Success and error messages are shown |
+| US09 | Admin | As an admin, I want to manage site content | Admin can add, edit, and delete content |
+
+All user stories were tested manually during development using Django’s built-in authentication system and CRUD views.
+
+
+## Defensive Testing
+
+| Scenario | Test Action | Expected Result | Actual Result | Status |
+|---------|-------------|----------------|---------------|--------|
+| Unauthorized edit | Attempt to edit content while logged out | Access is denied and user is redirected | As expected | Pass |
+| Unauthorized delete | Attempt to delete another user’s content | Action is blocked by permissions | As expected | Pass |
+| Invalid form submission | Submit form with empty fields | Validation errors are displayed | As expected | Pass |
+
+
+
+
 ### Authentication Features
 
 | Feature | Test Case | Expected Result | Actual Result | Pass/Fail |
